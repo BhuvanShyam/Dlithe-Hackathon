@@ -124,9 +124,6 @@ The application has several API endpoints for managing users, crops, contracts, 
 
 Contributions are welcome! If you have suggestions for improvements or new features, feel free to create a pull request or open an issue.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
