@@ -129,8 +129,8 @@ Contributions are welcome! If you have suggestions for improvements or new featu
 
 For any questions or inquiries, feel free to reach out:
 
-- **Your Name**: [Your Email](bhuvanshyam2022@gmail.com)
-- **GitHub**: [yourusername](https://github.com/BhuvanShyam)
+- **Your Name**: [SyanpseForage]
+- **GitHub**: [Bhuvan](https://github.com/BhuvanShyam)
 
 ---
 
