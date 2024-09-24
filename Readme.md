@@ -132,8 +132,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For any questions or inquiries, feel free to reach out:
 
-- **Your Name**: [Your Email](mailto:your.email@example.com)
-- **GitHub**: [yourusername](https://github.com/yourusername)
+- **Your Name**: [Your Email](bhuvanshyam2022@gmail.com)
+- **GitHub**: [yourusername](https://github.com/BhuvanShyam)
 
 ---
 
