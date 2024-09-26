@@ -3,8 +3,14 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
-import authRoutes from "./routes/authRoutes.js"
-
+import authRoutes from "./routes/authRoutes.js";
+import buyerDashboardRoutes from "./routes/buyerDashboard.js";
+import farmerDashboardRoutes from "./routes/farmerdashboardRoutes.js";
+import notificationRoutes from "./routes/notificationRoutes.js";
+import cropRoutes from "./routes/cropRoutes.js";
+import chatRoutes from "./routes/chatRoutes.js";
+import requestRoutes from "./routes/requestRoutes.js";
+import contractRoutes from "./routes/contractRoutes.js";
 
 dotenv.config();
 
@@ -19,9 +25,7 @@ const corsOptions = {
   credentials: true,
 };
 
-
 app.use(cors(corsOptions));
-
 
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
@@ -29,8 +33,14 @@ app.use((req, res, next) => {
 });
 
 // API routes
-app.use('/api/v1/auth',authRoutes);
-
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/buyerDashboard", buyerDashboardRoutes);
+app.use("/api/v1/farmerdashboard", farmerDashboardRoutes);
+app.use("/api/v1/notification", notificationRoutes);
+app.use("/api/v1/crop", cropRoutes);
+app.use("/api/v1/chat", chatRoutes);
+app.use("/api/v1/request", requestRoutes);
+app.use("/api/v1/contract", contractRoutes);
 
 // Health check route
 app.get("/health", (req, res) => {

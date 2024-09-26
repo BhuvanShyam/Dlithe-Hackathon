@@ -1,18 +1,35 @@
+// models/Request.js
+
 import mongoose from 'mongoose';
 
-const notificationSchema = new mongoose.Schema({
-  user: {
+const requestSchema = new mongoose.Schema({
+  crop: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Crop',
+    required: true,
+  },
+  buyer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },
-  message: {
-    type: String,
+  farmer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: true,
   },
-  read: {
-    type: Boolean,
-    default: false,
+  proposedPrice: {
+    type: Number,
+    required: true,
+  },
+  proposedQuantity: {
+    type: Number,
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ['Pending', 'Accepted', 'Rejected'],
+    default: 'Pending',
   },
   createdAt: {
     type: Date,
@@ -20,5 +37,5 @@ const notificationSchema = new mongoose.Schema({
   },
 });
 
-const Notification = mongoose.model('Notification', notificationSchema);
-export default Notification;
+const Request = mongoose.model('Request', requestSchema);
+export default Request;
