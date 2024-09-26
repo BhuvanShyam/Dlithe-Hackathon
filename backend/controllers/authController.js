@@ -15,42 +15,28 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password, role } = req.body;
-    if (!email || !password || !role) {
-      return res.status(400).json({ message: "Please fill in all fields" });
-    }
-
+    
+    // User authentication logic
     const user = await User.findOne({ email });
     if (!user || !(await user.comparePassword(password))) {
-      return res.status(400).json({ message: "Incorrect Username or password", success: false });
+      return res.status(400).json({ message: "Invalid email or password", success: false });
     }
 
     if (role !== user.role) {
-      return res.status(400).json({ message: "Account doesn't exist with the current role", success: false });
+      return res.status(400).json({ message: "Role mismatch", success: false });
     }
 
-    const tokenData = { userId: user._id };
-    const token = jwt.sign(tokenData, process.env.SECRET_KEY, { expiresIn: "1d" });
+    // Create token with user ID in payload
+    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: "1d" });
 
-    res
-      .status(200)
-      .cookie("token", token, {
-        maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day
-        httpOnly: true,
-        sameSite: "strict",
-      })
-      .json({
-        message: "Logged in successfully",
-        success: true,
-        user: {
-          _id: user._id,
-          fullName: user.fullName,
-          email: user.email,
-          phoneNumber: user.phoneNumber,
-          location: user.location,
-          role: user.role,
-          profile: user.profile,
-        },
-      });
+    // Set token in cookies
+    res.cookie('token', token, {
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+      httpOnly: true,
+      sameSite: 'strict',
+    });
+
+    return res.status(200).json({ message: "Logged in successfully", success: true, token });
   } catch (error) {
     return res.status(500).json({ message: "Server Error" });
   }

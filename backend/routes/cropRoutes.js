@@ -8,14 +8,15 @@ import {
   getCrops,
   getCropById,
 } from "../controllers/cropController.js";
+import isAuthenticated from "../middleware/isAuthenticated.js";
 
 const router = express.Router();
 
 // Crop routes
-router.post("/", createCrop); // Create a new crop
-router.put("/:id", updateCrop); // Update a crop
-router.delete("/:id", deleteCrop); // Delete a crop
-router.get("/", getCrops); // Get all crops
-router.get("/:id", getCropById); // Get a crop by ID
+router.post("/", isAuthenticated, createCrop); // Create a new crop
+router.put("/:id", isAuthenticated, updateCrop); // Update a crop
+router.delete("/:id", isAuthenticated, deleteCrop); // Delete a crop
+router.get("/", isAuthenticated, getCrops); // Get all crops
+router.get("/:id", isAuthenticated, getCropById); // Get a crop by ID
 
 export default router;
