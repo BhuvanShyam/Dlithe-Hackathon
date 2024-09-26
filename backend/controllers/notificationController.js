@@ -1,6 +1,6 @@
 // controllers/notificationController.js
 
-import Notification from '../models/Notification.js';
+import Notification from '../models/notification.model.js';
 
 // Fetch notifications for a user
 export const getNotifications = async (req, res) => {

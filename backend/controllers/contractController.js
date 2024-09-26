@@ -1,6 +1,6 @@
-import Contract from '../models/Contract.js';
-import User from '../models/User.js';
-import Crop from '../models/Crop.js';
+import Contract from '../models/contract.model.js';
+import User from '../models/user.model.js';
+import Crop from '../models/crop.model.js';
 
 
 export const createContract = async (req, res) => {
