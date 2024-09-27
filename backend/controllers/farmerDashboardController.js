@@ -6,7 +6,7 @@ import Notification from '../models/notification.model.js';
 
 // Get the farmer's dashboard (list of posted crops and contract requests)
 export const getFarmerDashboard = async (req, res) => {
-  const farmerId = req.user.id; // Assuming farmer is authenticated
+  const farmerId = req.id; // Assuming farmer is authenticated
 
   try {
     // Get crops posted by the farmer

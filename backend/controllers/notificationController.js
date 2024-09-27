@@ -4,7 +4,7 @@ import Notification from '../models/notification.model.js';
 
 // Fetch notifications for a user
 export const getNotifications = async (req, res) => {
-  const userId = req.user.id; // Assuming user is authenticated
+  const userId = req.id; // Assuming user is authenticated
 
   try {
     const notifications = await Notification.find({ user: userId }).sort({ createdAt: -1 });

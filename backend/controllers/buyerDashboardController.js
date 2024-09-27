@@ -1,21 +1,20 @@
-// controllers/buyerDashboardController.js
+
 
 import Crop from '../models/crop.model.js';
 import Contract from '../models/contract.model.js';
 import Notification from '../models/notification.model.js';
 
-// Get the buyer's dashboard (available crops and contract statuses)
+
 export const getBuyerDashboard = async (req, res) => {
-  const buyerId = req.user.id;
+  const buyerId = req.id;
 
   try {
-    // Get available crops
+   
     const availableCrops = await Crop.find({});
 
-    // Get contracts where the buyer is involved
+   
     const contracts = await Contract.find({ buyer: buyerId });
 
-    // Fetch notifications related to the buyer
     const notifications = await Notification.find({ user: buyerId });
 
     res.status(200).json({ availableCrops, contracts, notifications });
@@ -24,7 +23,7 @@ export const getBuyerDashboard = async (req, res) => {
   }
 };
 
-// Request a contract for a crop (for buyer)
+
 export const requestContract = async (req, res) => {
   const buyerId = req.user.id;
   const { cropId, proposedPrice, proposedQuantity } = req.body;
@@ -42,12 +41,12 @@ export const requestContract = async (req, res) => {
       buyer: buyerId,
       proposedPrice,
       proposedQuantity,
-      status: 'Pending', // Pending until farmer approves
+      status: 'Pending', 
     });
 
     await contract.save();
 
-    // Notify the farmer of the contract request
+   
     const notification = new Notification({
       user: crop.farmer,
       message: `New contract request from buyer for crop ${crop.type}`,

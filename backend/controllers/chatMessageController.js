@@ -5,7 +5,7 @@ import User from '../models/user.model.js';
 // Send a message (createMessage)
 export const createMessage = async (req, res) => {
   const { receiverId, message } = req.body;
-  const senderId = req.user.id; // Assuming the user is authenticated and the user ID is available in req.user
+  const senderId = req.id; // Assuming the user is authenticated and the user ID is available in req.user
 
   try {
     // Ensure that both sender and receiver exist
@@ -33,7 +33,7 @@ export const createMessage = async (req, res) => {
 // Get messages between two users (getMessages)
 export const getMessages = async (req, res) => {
   const { receiverId } = req.params; // Assuming receiver ID is passed as a route parameter
-  const senderId = req.user.id; // Authenticated user's ID
+  const senderId = req.id; // Authenticated user's ID
 
   try {
     // Ensure that both sender and receiver exist

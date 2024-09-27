@@ -6,16 +6,18 @@ import Crop from '../models/crop.model.js';
 export const createContract = async (req, res) => {
   try {
     const { buyerId, cropId } = req.body;
-    const farmerId = req.userId; 
+    const farmerId = req.id; 
 
    
     const buyer = await User.findById(buyerId);
+
     if (!buyer || buyer.role !== 'Buyer') {
       return res.status(404).json({ message: 'Buyer not found or is not a buyer.' });
     }
 
     
     const crop = await Crop.findById(cropId);
+   
     if (!crop || crop.farmer.toString() !== farmerId) {
       return res.status(404).json({ message: 'Crop not found or does not belong to the farmer.' });
     }
@@ -37,7 +39,7 @@ export const createContract = async (req, res) => {
 
 export const getContracts = async (req, res) => {
   try {
-    const farmerId = req.userId; 
+    const farmerId = req.id; 
     const contracts = await Contract.find({
       $or: [{ farmer: farmerId }, { buyer: farmerId }],
     })
